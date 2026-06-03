@@ -19,10 +19,10 @@ app.secret_key = os.getenv("skey")
 # Husk å endre host, user, password og database, slik at de er tilpasset dine instillinger 
 def get_db_connection():
     return mysql.connector.connect(
-        host="10.200.14.13",
+        host="127.0.0.1",
         user=user,
         password=pword,
-        database="uploader"
+        database="examen"
     )
 @app.route("/")
 def blank():

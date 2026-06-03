@@ -1,4 +1,4 @@
-# prøve examen
+# examen
 
 ## projekt: *file uploader*
 
