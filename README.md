@@ -147,13 +147,13 @@ serve(app, host='0.0.0.0', port=5000)
 3. *clone the projekt*
 
     ``` Bash
-    git clone https://github.com/sebrai/prove_examen.git
+    git clone https://github.com/sebrai/exam_2026.git
     ```
 
 4. *create enviorment*
 
     ``` Bash
-    cd prove_examen/
+    cd exam_2026/
     python3 -m venv .venv
     source .venv/bin/activate
     ```
