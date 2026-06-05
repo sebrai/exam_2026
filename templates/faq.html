@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <header> <h1>faq and user submited questions</h1></header>
     <main>
 
         <div class="q" id="faq">
@@ -41,7 +42,14 @@
         </div>
 
     </main>
-
+<footer>
+    {% if session.get('id') %}
+    <a href="{{url_for('home')}}"><button>home</button></a>
+    <a href="{{url_for('logout')}}"><button>logout</button></a>
+    {% else %}
+    <a href="{{url_for('login')}}"><button>login</button></a>
+    {% endif %}
+</footer>
 </body>
 <!-- <button onclick="hidesec('#faq')">hide faq</button>
 <button onclick="hidesec('#uq')">hide user questions</button>

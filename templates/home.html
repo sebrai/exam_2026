@@ -21,6 +21,7 @@
                 <a href="{{url_for('download',f_id=file['id'])}}"><button>open dowload link</button></a>
                 <button class="download_links" id="{{file['id']}}">copy download link</button>
                 <button class="get_links" id="{{file['id']}}">copy get link</button>
+                <a href="{{url_for('r_file',id = file['id'])}}" onclick="return confirm('are you sure you want to delete this file this action can not be undone')"><button>delete file</button></a>
             </div>
             {% endfor%}
         </div>
@@ -29,7 +30,7 @@
         <a href="{{url_for('logout')}}"><button>logout</button></a>
         <button id="showudet">change user details</button>
         <a href="{{url_for('r_user',id = session['id'])}}" onclick="return confirm('are you sure you want to remove your user?')"><button>remove user</button></a>
-        <!-- <a href="{{url_for('help')}}"><button></button></a> -->
+        <a href="{{url_for('help')}}"><button>help</button></a>
         <div id="udetail" style="display: none;"><form action="{{url_for('setuser',id = session['id'])}}" method="post">
             <input type="text" name="name" id="" value="{{session['name']}}">
             <input type="text" name="email" id="" value="{{session['email']}}">

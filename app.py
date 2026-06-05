@@ -182,6 +182,32 @@ def get(f_id):
         headers={
             "Content-Disposition": f'inline; filename="{file["name"]}"'
         })
+
+
+@app.route("/r_file/<id>")
+def r_file(id):
+    if  not session.get('id'):
+      return redirect(url_for('login'))
+    
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT poster_id FROM files WHERE id = %s",(id,))
+    poster_id = cursor.fetchone()
+    poster_id = poster_id['poster_id']
+    if not session['id'] == poster_id and not session['role'] == 'admin':
+        cursor.close()
+        conn.close()
+        return redirect(url_for("home"))
+    cursor.execute("DELETE FROM files WHERE ID = %s",(id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect(url_for('home'))
+
+@app.route("/help")
+def help():
+    return render_template("faq.html")
+
 if __name__ == "__main__":
 
     app.run(debug=True,host='0.0.0.0', port=5000)
