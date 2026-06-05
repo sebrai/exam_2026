@@ -12,6 +12,8 @@
 
 - *legge til route for å anonymisere bruker*
 
+- *legge til route for å slette filer*
+
 - *legge til en route som åpner opp faq siden uten bruker spørsmål*
 
 - *legge til spørsmål tabel i db*

@@ -41,3 +41,6 @@ for (let index = 0; index < get_links.length; index++) {
         copy_msg(element.id,"get")
     })
 }
+document.querySelector("#showudet").addEventListener("click",()=>{
+  document.querySelector("#udetail").style.display =  document.querySelector("#udetail").style.display != "none" ? "none": "block"
+})

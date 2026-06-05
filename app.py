@@ -94,6 +94,40 @@ def home():
     conn.close()
     return render_template('home.html',files= files)
 
+
+@app.route("/setuser/<id>",methods = ["GET","POST"])
+def setuser(id):
+    if  not session.get('id'):
+      return redirect(url_for('login'))
+    if not session['id'] == id and not session['role'] == 'admin':
+        return redirect(url_for("home"))
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form['email']
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE users SET name = %s, email = %s WHERE id = %s",(name,email,id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        session['name'] = name
+        session['email'] = email
+    return redirect(url_for("home"))
+
+@app.route("/r_user/<id>")
+def r_user(id):
+    if  not session.get('id'):
+      return redirect(url_for('login'))
+    if not session['id'] == id and not session['role'] == 'admin':
+        return redirect(url_for("home"))
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET name = %s, email = %s, password = %s WHERE id = %s",("deleted_u:"+str(id)[0:8],str(id)+"@uploader.net","removed user",id))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect(url_for("logout"))
+
 @app.route("/upload",methods = ["GET","POST"])
 def upload():
     if  not session.get('id'):
